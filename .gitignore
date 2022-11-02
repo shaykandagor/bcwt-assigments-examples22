@@ -1,1 +1,4 @@
 node_modules/
+
+week-two/uploads/*
+!week-two/uploads/.gitkeep

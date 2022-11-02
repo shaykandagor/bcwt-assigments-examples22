@@ -19,9 +19,13 @@ const getCat = (req, res) => {
         res.sendStatus(404);
     }   
 };
+const createCat = (req, res) => {
+  console.log(req.body);
+  res.send('adding a cat');
+};
 
 const modifyCat = () => {};
-const createCat = () => {};
+
 const deleteCat = () => {};
 
 module.exports = {
