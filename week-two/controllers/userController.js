@@ -28,7 +28,7 @@ const createUser = (req , res) => {
     // console.log(req.body);
     const userInfo = ` username: ${req.body.name}, email: ${req.body.email}`;
     res.send('Adding new user' + userInfo);
-    // TODO
+    // TODO add new user to db
    
 };
 const deleteUser = () => {};
