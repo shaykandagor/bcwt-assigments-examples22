@@ -8,7 +8,6 @@ router.get('/', catController.getCats);
 
 router.get('/:catId', catController.getCat);
 
-
 router.post('/', (req, res) => {
   res.send('From this endpoint you can add more cats.');
 });
