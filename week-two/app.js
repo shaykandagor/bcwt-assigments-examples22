@@ -8,8 +8,8 @@ const userRouter = require('./routes/userRoute');
 const port = 3000;
 
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.json()); // for parsing application /json
+app.use(express.urlencoded({extended:true})); // fpr parsing application
 
 app.use('/cat', catRouter);
 app.use('/user', userRouter);
