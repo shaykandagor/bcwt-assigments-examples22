@@ -7,18 +7,11 @@ const catController = require('../controllers/catController');
 
 const upload = mutler({dest: 'uploads/'});
 
-router.get('/', catController.getCats);
-
-router.get('/:catId', catController.getCat);
-
-router.post('/', upload.single('cat') , catController.createCat);
-
-router.put('/', (req, res) => {
-  res.send('From this endpoint you can edit/update cats.')
-});
-
-router.delete('/', (req, res) => {
-  res.send('From this endpoint you can delete cats.')
-});
+router.get('/', catController.getCats)
+  .get('/:catId', catController.getCat)
+  .post('/', upload.single('cat') , catController.createCat)
+  .put('/', catController.modifyCat)
+  .put('/:catId', catController.modifyCat)
+  .delete('/:catId', catController.deleteCat);
 
 module.exports = router;

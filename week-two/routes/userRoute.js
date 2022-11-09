@@ -7,19 +7,11 @@ const userController = require ('../controllers/userController');
 
 const upload = mutler({dest: 'uploads/'});
 
-router.get('/', userController.getUsers);
-
-router.get('/:userId', userController.getUser);
-
-router.post('/', upload.single('user'), userController.createUser);
-
-router.put('/', (req, res) => {
-  res.send('From this endpoint you can edit/update users.')
-});
-
-router.delete('/', (req, res) => {
-  res.send('From this endpoint you can delete users.')
-});
-
+router.get('/', userController.getUsers)
+ .get('/:userId', userController.getUser)
+ .post('/', upload.single('user'), userController.createUser)
+ .put('/', userController.modifyUser)
+ .put('/:userId', userController.modifyUser)
+ .delete('/:userId', userController.deleteUser);
 
 module.exports = router;

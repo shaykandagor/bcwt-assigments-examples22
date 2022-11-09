@@ -11,6 +11,9 @@ app.use(cors());
 app.use(express.json()); // for parsing application /json
 app.use(express.urlencoded({extended:true})); // fpr parsing application
 
+// serve the uploaded files
+app.use(express.static('uploads'));
+
 app.use('/cat', catRouter);
 app.use('/user', userRouter);
 
