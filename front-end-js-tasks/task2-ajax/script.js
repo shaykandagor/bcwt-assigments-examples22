@@ -27,10 +27,42 @@ const renderResults = (data) => {
     for (let i=0; i<data.length; i++) {
         const h3 = document.createElement('h3');
         h3.textContent = data[i].show.name;
+
         const img = document.createElement('img');
         img.src = data[i].show.image.medium;
+
+        const type = document.createElement('type');
+        type.textContent = data[i].show.type;
+
+        const language = document.createElement('language');
+        language.textContent = data[i].show.language;
+
+        let genres = [];
+        genres = document.createElement('genres');
+        genres.textContent = data[i].show.genres;
+
+        const status = document.createElement('status');
+        status.textContent =  data[i].show.status;
+
+        const runTime = document.createElement('runTime');
+        runTime.textContent = data[i].show.runtime;
+
+        const averageRuntime = document.createElement('averageRuntime');
+        averageRuntime.textContent = data[i].show.averageRuntime;
+
+        const premiered  = document.createElement('premiered');
+        premiered.textContent = data[i].show.premiered;
+
         results.append(h3);
         results.append(img);
+        results.append(type);
+        results.append(language);
+        results.append(genres);
+        results.append(status);
+        results.append(runTime);
+        results.append(averageRuntime);
+        results.append(premiered);
+
         // TODO: Render more data from the results
 
     }
