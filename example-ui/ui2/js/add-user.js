@@ -19,5 +19,6 @@ addUserForm.addEventListener('submit', async (evt) => {
   const response = await fetch(url + '/user', fetchOptions);
   const json = await response.json();
   alert(json.message);
-  location.href = 'front.html';
+  console.log(json);
+  // location.href = 'front.html';
 });
