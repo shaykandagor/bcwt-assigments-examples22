@@ -25,12 +25,12 @@
                     <input class="light-border" type="text" name="name" required placeholder="Name">
                     <input class="light-border" name="birthdate" required type="date"
                         placeholder="Birthdate: YYYY-MM-DD">
-                    <input class="light-border" type="number" step="0.1" name="weight" type="number" min="1" max="30"
-                        placeholder="Weight">
-                    <select class="light-border add-owner" name="owner">
+                    <input class="light-border" type="number" step="0.1" name="weight" type="number" required min="0.1"
+                        max="30" placeholder="Weight">
+                    <select class="light-border add-owner" name="owner" required>
                         <option value="">Select owner</option>
                     </select>
-                    <input required class="light-border" type="file" name="cat" accept="image/*"
+                    <input class="light-border" type="file" name="cat" required accept="image/*"
                         placeholder="Choose file">
                     <button class="light-border" type="submit">Upload</button>
                 </form>
