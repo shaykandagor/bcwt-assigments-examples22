@@ -11,11 +11,11 @@ const fileFilter = (req, file, cb) => {
   // The function should call 'cb' with a boolean
   // to indicate if the file should be accepted
   const acceptedTypes = ['images/jpeg', 'images/png', 'image/gif'];
-  if(acceptedTypes.includes(file.mimetype)){
-    //To reject this file pass 'false' like so:
+  if(acceptedTypes.includes(file.mimetype)) {
+    //To accept this file pass 'true' like so:
     cb(null, true);  
   }else{
-    // To accept the file pass 'false', like so:
+    // To reject the file pass 'false', like so:
     cb(null, false)
   }
 };
@@ -26,7 +26,7 @@ router.get('/', catController.getCats)
     .get('/:catId', catController.getCat)
     .post('/',
       upload.single('cat') , 
-      body('name').isAlphanumeric().trim().escape(),
+      body('name').isAlphanumeric(),
       body('birthdate').isDate(),
       body('weight').isFloat({min: 0.1, max: 30}),
       body('owner').isInt({min: 1}),

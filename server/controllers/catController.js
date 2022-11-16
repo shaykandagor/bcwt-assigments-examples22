@@ -19,23 +19,17 @@ const getCat = async (req, res) => {
 };
 const createCat = async (req, res) => {   
     const errors = validationResult(req);
-    //File is empty or missing (not passing multer's fileFilter in route)
-    if(!req.file){
-        res.status(400).json({message: 'file missing or invalid'});
-    } 
-    else if (errors.isEmpty()){
-        const cat = req.body;
-        cat.filename=  req.file.filename;
-        console.log('creating a new cat:', cat);
-        const catId = await catModel.addCat(cat, res);
-        res.status(201).json({message: 'cat created', catId});
-    }else{
-        console.log('validation errors', errors)
-        res.status(400).json({
-            message: 'cat creation failed',
-            errors: errors.array()
-        });
-    }
+      if (errors.isEmpty() && req.file) {
+    const cat = req.body;
+    cat.filename = req.file.filename;
+    console.log('creating a new cat:', cat);
+    const catId = await catModel.addCat(cat, res);
+    res.status(201).json({message: 'cat created', catId});
+  } else {
+    console.log('validation errors', errors);
+    res.status(400).json({message: 'cat creation failed',
+                          errors: errors.array()});
+  }
 };
 
 const modifyCat = async(req, res) => {
