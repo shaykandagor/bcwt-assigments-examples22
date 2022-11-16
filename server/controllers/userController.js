@@ -12,6 +12,7 @@ const getUsers = async (req, res ) => {
 };
 
 const getUser = async (req, res) => {
+  // choose only one object with matching id
     const user = await userModel.getUserById(req.params.userId, res);
     if(user){
         res.json(user);

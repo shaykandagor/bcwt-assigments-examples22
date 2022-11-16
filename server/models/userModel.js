@@ -14,7 +14,7 @@ const getAllUsers = async (res) => {
   }
 };
 
-const getUserById = async (id,res) => {
+const getUserById = async (id, res) => {
   try {
     const sql = "SELECT user_id, name, email, role FROM wop_user " + "WHERE user_id=" + id;
     const [rows] = await promisePool.query(sql);
@@ -71,5 +71,5 @@ module.exports = {
   getUserById,
   addUser,
   updateUserById,
-  deleteUserById,
+  deleteUserById
 };
