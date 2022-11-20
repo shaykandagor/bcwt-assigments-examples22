@@ -10,11 +10,11 @@ const catController = require('../controllers/catController');
 const fileFilter = (req, file, cb) => {
   // The function should call 'cb' with a boolean
   // to indicate if the file should be accepted
-  const acceptedTypes = ['images/jpeg', 'images/png', 'image/gif'];
+  const acceptedTypes = ['image/jpeg', 'image/png', 'image/gif'];
   if(acceptedTypes.includes(file.mimetype)) {
     //To accept this file pass 'true' like so:
     cb(null, true);  
-  }else{
+  } else {
     // To reject the file pass 'false', like so:
     cb(null, false)
   }

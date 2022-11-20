@@ -8,11 +8,10 @@ const button = form.querySelector('button');
 const input = form.querySelector('input');
 const results = document.querySelector('#results');
 
-
 button.addEventListener('click', (event) => {
     // do not submit the form to anywhere(no page refresh)
     event.preventDefault();
-    // prevent the generic event listener ath the bottom
+    // prevent the generic event listener at the bottom
     event.stopPropagation();
     if(input.value.length > 1){
         getTVSeriesData(input.value);
@@ -23,51 +22,56 @@ button.addEventListener('click', (event) => {
 const renderResults = (data) => {
     // clear existing results before appending new ones
     results.innerHTML = '';
+
     // loop through all search results
     for (let i=0; i<data.length; i++) {
         const h3 = document.createElement('h3');
-        h3.textContent = data[i].show.name;
+        h3.innerHTML = data[i].show.name;
 
         const img = document.createElement('img');
-        img.src = data[i].show.image.medium;
 
-        const type = document.createElement('type');
-        type.textContent = data[i].show.type;
+        if((data[i].show.image.medium)){
+            img.src = data[i].show.image.medium;
+            
+        }else{
+            alert(data[i].show.name);
+            img.src = "http://placekitten.com/200/300";
+        }
 
-        const language = document.createElement('language');
-        language.textContent = data[i].show.language;
+        const officialSite = document.createElement('a');
+        
+        if((data[i].show.officialSite)){
+            officialSite.href = data[i].show.officialSite;   
+            officialSite.textContent = "officialSite"; 
+        }
+        
 
-        let genres = [];
-        genres = document.createElement('genres');
-        genres.textContent = data[i].show.genres;
 
-        const status = document.createElement('status');
-        status.textContent =  data[i].show.status;
+        const summary = document.createElement('p');
+        summary.innerHTML = data[i].show.summary;
 
-        const runTime = document.createElement('runTime');
-        runTime.textContent = data[i].show.runtime;
+        
+        const genres = document.createElement('p');
+        genres.innerHTML += data[i].show.genres.join(" | ");
 
-        const averageRuntime = document.createElement('averageRuntime');
-        averageRuntime.textContent = data[i].show.averageRuntime;
+        const container = document.createElement('div');
 
-        const premiered  = document.createElement('premiered');
-        premiered.textContent = data[i].show.premiered;
+        const left = document.createElement('aside');
+        const right = document.createElement('aside');
 
-        results.append(h3);
-        results.append(img);
-        results.append(type);
-        results.append(language);
-        results.append(genres);
-        results.append(status);
-        results.append(runTime);
-        results.append(averageRuntime);
-        results.append(premiered);
+        container.appendChild(left);
+        container.appendChild(right);
 
-        // TODO: Render more data from the results
+        right.appendChild(h3);
+        left.appendChild(img);
+        right.appendChild(officialSite);
+        right.appendChild(summary);
+        right.appendChild(genres);
+
+        results.appendChild(container);
 
     }
     
-
 };
 
 const getTVSeriesData  = async (name) => {
