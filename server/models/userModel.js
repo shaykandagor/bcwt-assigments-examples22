@@ -5,7 +5,7 @@ const promisePool = pool.promise();
 
 const getAllUsers = async (res) => {
   try {
-    const sql = 'SELECT user_id, wop_user.name, email, password, role, wop_cat.name AS petname ' + 'FROM wop_user JOIN wop_cat ON wop_user.user_id = wop_cat.owner';
+    const sql = 'SELECT user_id, name, email, role FROM wop_user';
     const [rows] = await promisePool.query(sql);
     return rows; 
   }catch (e) {
