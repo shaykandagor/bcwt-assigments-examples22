@@ -16,6 +16,11 @@ app.get('/getCookie', (req, res) => {
   res.send('cookie value');
 });
 
+app.get('/deleteCookie', (req, res) => {
+  res.clearCookie('color');
+  res.send('Color cookie deleted.');
+});
+
 app.get('/setCookie/:color', (req, res) => {
   console.log(req.params.color);
   res.cookie('color', req.params.color);
