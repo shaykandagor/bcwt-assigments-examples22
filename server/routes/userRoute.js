@@ -6,6 +6,7 @@ const {body} = require('express-validator');
 const userController = require ('../controllers/userController');
 
 router.get('/', userController.getUsers)
+  .get('/token', userController.checkToken)
   .get('/:userId', userController.getUser)
   .post('/', 
     body('name').isLength({min: 3}).trim().escape(),

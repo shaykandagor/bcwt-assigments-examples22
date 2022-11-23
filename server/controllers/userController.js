@@ -65,6 +65,10 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const checkToken = (req, res) => {
+  res.json({user: req.user});
+};
+
 
 
 module.exports = {
@@ -72,6 +76,7 @@ module.exports = {
     getUser,
     modifyUser,
     createUser,
-    deleteUser
+    deleteUser,
+    checkToken
 
  };
