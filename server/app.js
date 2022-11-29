@@ -11,6 +11,7 @@ const port = 3000;
 
 //serve uploaded files
 app.use(express.static('uploads'));
+app.use('/thumbnails', express.static('thumbnails'));
 
 app.use(cors());
 app.use(express.json()); // for parsing application/json
