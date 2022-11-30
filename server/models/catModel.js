@@ -39,7 +39,7 @@ const addCat = async (cat, res) => {
   }
 };
 
-const updateCatById = async (cat, res) => {
+const updateCatById = async (user, cat, res) => {
   try {
     console.log(user, 'is modify cat:', cat);
     let sql, values;
