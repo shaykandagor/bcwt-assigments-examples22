@@ -57,12 +57,20 @@ const createCat = async (req, res) => {
 
 const modifyCat = async(req, res) => {
   const cat = req.body;
+<<<<<<< HEAD
   const user = req.user;
+=======
+  const user = req.body;
+>>>>>>> 012effb2d6ac6b83b2248971827a766978197c94
   if(req.params.catId) {
     cat.id = req.params.catId;
   }
   //console.log('user', user, 'modifies cat:', cat);
+<<<<<<< HEAD
   const result = await catModel.updateCatById(user, cat, res);
+=======
+  const result = await catModel.updateCatById(cat, res);
+>>>>>>> 012effb2d6ac6b83b2248971827a766978197c94
   if(result.affectedRows > 0){
     res.json({message: 'cat modified ' + cat.id});
   }else {

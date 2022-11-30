@@ -14,7 +14,11 @@ const getCoordinates = (imgFile) => {
           console.log('Error: '+error.message);
 
         }else {
+<<<<<<< HEAD
           // console.log(exifData); // Do something with your data!
+=======
+          console.log(exifData); // Do something with your data!
+>>>>>>> 012effb2d6ac6b83b2248971827a766978197c94
           const decimalLon = gpsToDecimal(exifData.gps.GPSLongitude, exifData.GPSLongitudeRef);
           const decimalLat = gpsToDecimal(exifData.gps.GPSLatitude, exifData.GPSLatitudeRef);
           coordinates = [decimalLon, decimalLat];
@@ -43,7 +47,7 @@ const makeThumbnail = async (file, thumbname) => {
   // file = full path to image (req.file.path), thumbname = filename (req.file.filename)
   // TODO: use sharp to create a png thumbnail of 160x160px, use async await
   await sharp(file)
-    .resize(160)
+    .resize(160, 160)
     .png()
     .toFile('./thumbnails/' + thumbname );
 };
