@@ -73,7 +73,7 @@ const modifyCat = async(req, res) => {
 
 
 const deleteCat = async (req, res) => {
-  const result = await catModel.deleteCatById(req.params.catId, req.user.user_id, res);
+  const result = await catModel.deleteCatById(req.params.catId, req.user_id, res);
   console.log('cat deleted', result);
   if(result.affectedRows > 0){
     // TODO: check what happens when sql query is not working?
