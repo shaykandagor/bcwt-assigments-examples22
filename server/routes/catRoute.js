@@ -22,7 +22,8 @@ const fileFilter = (req, file, cb) => {
 
 const upload = mutler({dest: 'uploads/', fileFilter});
 
-router.get('/', catController.getCats)
+router
+    .get('/', catController.getCats)
     .get('/:catId', catController.getCat)
     .post('/',
       upload.single('cat') , 
@@ -30,8 +31,18 @@ router.get('/', catController.getCats)
       body('birthdate').isDate(),
       body('weight').isFloat({min: 0.1, max: 30}),
      catController.createCat)
-    .put('/', catController.modifyCat) // TODO: Add Validators
-    .put('/:catId', catController.modifyCat) // TODO: Add Validators
+    .put(
+      '/',
+       body('name').isLength({ min: 2 }).trim().escape(),
+       body('birthdate').isDate(),
+       body('weight').isFloat({ min: 0.1, max: 30 }),
+     catController.modifyCat) 
+    .put(
+      '/:catId', 
+      body('name').isLength({ min: 2 }).trim().escape(),
+      body('birthdate').isDate(),
+      body('weight').isFloat({ min: 0.1, max: 30 }),
+      catController.modifyCat) 
     .delete('/:catId', catController.deleteCat);
  
 module.exports = router;

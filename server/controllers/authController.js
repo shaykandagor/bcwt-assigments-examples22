@@ -22,8 +22,8 @@ const login = (req, res) => {
            // generate a signed json web token with the contents of user object and return it in the response
            // do not include password in token/ user object when sending to client
 
-            delete user.user.password;    
-            console.log(user);     
+            delete user.password;    
+            // console.log(user);     
             const token = jwt.sign(user, process.env.JWT_SECRET);
             return res.json({user, token});
         });
