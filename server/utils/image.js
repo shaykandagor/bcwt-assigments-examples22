@@ -14,11 +14,7 @@ const getCoordinates = (imgFile) => {
           console.log('Error: '+error.message);
 
         }else {
-<<<<<<< HEAD
           // console.log(exifData); // Do something with your data!
-=======
-          console.log(exifData); // Do something with your data!
->>>>>>> 012effb2d6ac6b83b2248971827a766978197c94
           const decimalLon = gpsToDecimal(exifData.gps.GPSLongitude, exifData.GPSLongitudeRef);
           const decimalLat = gpsToDecimal(exifData.gps.GPSLatitude, exifData.GPSLatitudeRef);
           coordinates = [decimalLon, decimalLat];
