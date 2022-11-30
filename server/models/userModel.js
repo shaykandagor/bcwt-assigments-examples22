@@ -25,7 +25,6 @@ const getUserById = async (id, res) => {
   }
 };
 
-// Added get user login
 const getUserLogin = async (user) => {
   try {
     console.log('getUserLogin()', user);

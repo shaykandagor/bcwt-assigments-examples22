@@ -1,6 +1,4 @@
 'use strict'
-//userController
-// How data is managed from data model
 
 const userModel = require("../models/userModel");
 const {validationResult} = require('express-validator');
@@ -73,8 +71,8 @@ const checkToken = (req, res) => {
 
 
 module.exports = {
-    getUsers,
     getUser,
+    getUsers,
     modifyUser,
     createUser,
     deleteUser,

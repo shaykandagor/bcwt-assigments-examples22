@@ -25,7 +25,7 @@ passport.use(
       if(!passwordOK){
         return done(null, false, {message: "Incorrect password."});
       }
-      return done(null, {user}, {message: "Logged In Successfully" }); 
+      return done(null, user, {message: "Logged In Successfully" }); 
     } catch (err) {
       return done(err);
     }
