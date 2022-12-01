@@ -41,7 +41,7 @@ const addCat = async (cat, res) => {
 
 const updateCatById = async (user, cat, res) => {
   try {
-    console.log(user, 'is modify cat:', cat);
+    console.log(user, 'is modifying cat:', cat);
     let sql, values;
     // if admin user
     if (user.role == 0) {
@@ -64,16 +64,27 @@ const updateCatById = async (user, cat, res) => {
    }
 };
 
-const deleteCatById = async (catId, owner, res) => {
+const deleteCatById = async (cat, user, res) => {
   try {
-    const [rows] = 
-      await promisePool.query("DELETE FROM wop_cat WHERE cat_id = ? and owner = ?",
-      [catId, owner]);
-    return rows;
-  } catch (e) {
+    console.log(user, 'is deleting cat: ', cat);
+    let sql, values;
+    // if admin user
+    if (user.role == 0) {
+      sql =
+        'DELETE FROM wop_cat WHERE cat_id = ?';
+      values = [cat.id];
+    } else {
+      sql =
+        'DELETE FROM wop_cat WHERE cat_id = ? AND owner = ?';
+      values = [cat.owner, cat.id];
+    }
+    const [rows] =
+       await promisePool.query(sql, values);
+     return rows;
+   } catch (e) {
     console.error("error", e.message);
-    res.status(500).send({'error': e.message});
-  }
+     res.status(500).send(e.message);
+   }
 };
 
 module.exports = {

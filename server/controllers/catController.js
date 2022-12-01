@@ -70,16 +70,18 @@ const modifyCat = async(req, res) => {
   }
 };
 
-
-
 const deleteCat = async (req, res) => {
-  const result = await catModel.deleteCatById(req.params.catId, req.user_id, res);
-  console.log('cat deleted', result);
+  const cat = req.body;
+  const user = req.user;
+  if(req.params.catId){
+    cat.id = req.params.catId;
+  }
+  const result = await catModel.deleteCatById(cat, user, res);
   if(result.affectedRows > 0){
     // TODO: check what happens when sql query is not working?
-    res.json({message: 'cat deleted'});
+    res.json({message: 'cat deleted ' + cat.id});
   }else {
-    res.status(401).json({message: 'Cat delete failed'});
+    res.status(404).json({message: 'Cat delete failed'});
   }
 };
 
