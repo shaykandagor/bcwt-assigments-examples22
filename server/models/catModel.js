@@ -76,11 +76,18 @@ const deleteCatById = async (cat, user, res) => {
     } else {
       sql =
         'DELETE FROM wop_cat WHERE cat_id = ? AND owner = ?';
+<<<<<<< HEAD
       values = [cat.id, user.user_id];
     }
     const [rows] =
        await promisePool.query(sql, values);
         console.log(rows);
+=======
+      values = [cat.owner, cat.id];
+    }
+    const [rows] =
+       await promisePool.query(sql, values);
+>>>>>>> 80aea36f4669f5abab8b821fcab87dd39fbb47a6
      return rows;
    } catch (e) {
     console.error("error", e.message);
